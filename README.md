@@ -9,7 +9,7 @@ MEET (Meet Events Everywhere Today) is a serverless, progressive web application
 - Add an App Shortcut to the Home Screen: Users can add the MEET app to their device's home screen for quick access.
 - Display Charts Visualizing Event Details: Visualize event data with interactive charts, including a scatterplot showing the distribution of events in different locations and a pie chart displaying the popularity of event genres.
 
-# Technical Requirements
+## Technical Requirements
 - Built with React, following a test-driven development (TDD) approach.
 - Utilizes the Google Calendar API and OAuth2 authentication flow for fetching upcoming events.
 - Implements serverless functions (preferably AWS Lambda) for the authorization server.
@@ -25,7 +25,7 @@ MEET (Meet Events Everywhere Today) is a serverless, progressive web application
 - Comprehensive test coverage with a rate of at least 90% to ensure reliability.
 - Monitored using an online performance monitoring tool for continuous optimization.
 
-# Getting Started
+## Getting Started
 To run the MEET app locally, follow these steps:
 
 1. Clone the GitHub repository: MEET App Repository.
@@ -40,9 +40,9 @@ npm start
 ```
 5. Access the app in your browser at http://localhost:3000.
 
-## User Stories
+# User Stories
 
-# Feature 2: Show/Hide Event Details
+## Feature 2: Show/Hide Event Details
 - User Story 2.1:
 As a user,
 I want event details to be collapsed by default
@@ -64,7 +64,7 @@ So that I can maintain a clean and organized view of the events list.
 Acceptance Criteria:
 When I click on an expanded event, its details should collapse or be hidden.
 
-# Feature 3: Specify Number of Events
+## Feature 3: Specify Number of Events
 - User Story 3.1:
 As a user,
 I want to see a default number of events displayed when I haven't specified a number
@@ -80,7 +80,7 @@ Acceptance Criteria:
 I should be able to select a different number of events from the settings or preferences menu.
 Upon changing the number, the events list should update accordingly.
 
-# Feature 4: Use the App When Offline
+## Feature 4: Use the App When Offline
 - User Story 4.1:
 As a user,
 I want the app to show cached data when there's no internet connection
@@ -95,7 +95,7 @@ So that I'm aware of the limitations and can avoid unnecessary frustration.
 Acceptance Criteria:
 If I try to change search settings like city or number of events while offline, the app should display an error message informing me that these changes cannot be made offline.
 
-# Feature 5: Add an App Shortcut to the Home Screen
+## Feature 5: Add an App Shortcut to the Home Screen
 - User Story 5.1:
 As a user,
 I want to be able to install the app as a shortcut on my device home screen
@@ -103,7 +103,7 @@ So that I can quickly access it without having to open the browser first.
 Acceptance Criteria:
 I should have the option to "Add to Home Screen" or similar from the browser menu, enabling me to create a shortcut for the app on my device's home screen.
 
-# Feature 6: Display Charts Visualizing Event Details
+## Feature 6: Display Charts Visualizing Event Details
 - User Story 6.1:
 As a user,
 I want to see a chart displaying the number of upcoming events in each city
@@ -111,9 +111,9 @@ So that I can get a visual overview of where events are concentrated.
 Acceptance Criteria:
 Within the app, there should be a section dedicated to displaying a chart or graph showing the distribution of upcoming events across different cities.
 
-## Scenarios
+# Scenarios
 
-# Feature 2: Show/Hide Event Details
+## Feature 2: Show/Hide Event Details
 - SCENARIO 2.1
 An event element is collapsed by default.
 
@@ -135,7 +135,7 @@ Given the user is viewing the list of upcoming events and an event's details are
 When the user clicks on the expanded event;
 Then the details of that event should be collapsed or hidden.
 
-# Feature 3: Specify Number of Events
+## Feature 3: Specify Number of Events
 - SCENARIO 3.1
 When user hasn’t specified a number, 32 events are shown by default.
 
@@ -149,7 +149,7 @@ Given the user is viewing the list of upcoming events;
 When the user selects a different number of events from the settings or preferences menu;
 Then the list of events should update to display the specified number of events accordingly.
 
-# Feature 4: Use the App When Offline
+## Feature 4: Use the App When Offline
 - SCENARIO 4.1
 Show cached data when there’s no internet connection.
 
@@ -164,7 +164,7 @@ Given the user is making changes to search settings like city or number of event
 When the user attempts to change these settings without an internet connection;
 Then the app should display an error message informing the user that these changes cannot be made offline.
 
-# Feature 5: Add an App Shortcut to the Home Screen
+## Feature 5: Add an App Shortcut to the Home Screen
 - SCENARIO 5.1
 User can install the meet app as a shortcut on their device home screen.
 
@@ -172,7 +172,7 @@ Given the user is accessing the app through a compatible device;
 When the user navigates to the browser's menu options;
 Then the user should have the option to "Add to Home Screen" or similar, enabling them to create a shortcut for the app on their device's home screen.
 
-# Feature 6: Display Charts Visualizing Event Details
+## Feature 6: Display Charts Visualizing Event Details
 - SCENARIO 6.1
 Show a chart with the number of upcoming events in each city.
 
