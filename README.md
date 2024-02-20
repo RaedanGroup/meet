@@ -9,6 +9,9 @@ MEET (Meet Events Everywhere Today) is a serverless, progressive web application
 - Add an App Shortcut to the Home Screen: Users can add the MEET app to their device's home screen for quick access.
 - Display Charts Visualizing Event Details: Visualize event data with interactive charts, including a scatterplot showing the distribution of events in different locations and a pie chart displaying the popularity of event genres.
 
+## Serverless Benefits
+This MEET app utilizes serverless functions via AWS Lambda to handle backend logic without the need for managing traditional servers. For example, when a user searches for events in a specific city, a serverless function can fetch data from the Google Calendar API and filter events based on the user's input. Additionally, serverless functions enable offline functionality by caching data and serving it to users even when they're not connected to the internet, ensuring a seamless browsing experience.
+
 ## Technical Requirements
 - Built with React, following a test-driven development (TDD) approach.
 - Utilizes the Google Calendar API and OAuth2 authentication flow for fetching upcoming events.
