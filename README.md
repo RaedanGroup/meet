@@ -45,6 +45,28 @@ npm start
 
 # User Stories
 
+## Feature 1: Filter Events By City
+- User Story 1.1:
+As a user,
+I want to see upcoming events from all cities when I haven’t searched for a specific city
+So that I can explore events regardless of location.
+Acceptance Criteria:
+Upon opening the app or event section without searching for a city, I should see a list of upcoming events from all cities.
+
+- User Story 1.2:
+As a user,
+I want to see a list of suggestions when I search for a city
+So that I can easily find and select the city I'm interested in.
+Acceptance Criteria:
+When I start typing in the city search textbox, I should receive a list of suggestions matching what I've typed.
+
+- User Story 1.3:
+As a user,
+I want to be able to select a city from the suggested list
+So that I can quickly filter events by my desired location.
+Acceptance Criteria:
+When the list of suggested cities is displayed, I should be able to select a city from the list, and the app should show me upcoming events in that city.
+
 ## Feature 2: Show/Hide Event Details
 - User Story 2.1:
 As a user,
@@ -116,6 +138,28 @@ Within the app, there should be a section dedicated to displaying a chart or gra
 
 # Scenarios
 
+## Feature 1: Filter Events by City
+- SCENARIO 1.1
+When user hasn’t searched for a specific city, show upcoming events from all cities.
+
+Given user hasn’t searched for any city;
+When the user opens the app;
+Then the user should see a list of upcoming events.
+
+- SCENARIO 1.2
+User should see a list of suggestions when they search for a city.
+
+Given the main page is open;
+When user starts typing in the city textbox;
+Then the user should receive a list of cities (suggestions) that match what they’ve typed.
+
+- SCENARIO 1.3
+User can select a city from the suggested list.
+
+Given user was typing “Berlin” in the city textbox AND the list of suggested cities is showing;
+When the user selects a city (e.g., “Berlin, Germany”) from the list;
+Then their city should be changed to that city (i.e., “Berlin, Germany”) AND the user should receive a list of upcoming events in that city.
+
 ## Feature 2: Show/Hide Event Details
 - SCENARIO 2.1
 An event element is collapsed by default.
@@ -145,7 +189,8 @@ When user hasn’t specified a number, 32 events are shown by default.
 Given the user has not specified the number of events to be displayed;
 When the user opens the app or navigates to the event section;
 Then the user should see a default list of 32 upcoming events.
-SCENARIO 3.2
+
+- SCENARIO 3.2
 User can change the number of events displayed.
 
 Given the user is viewing the list of upcoming events;
