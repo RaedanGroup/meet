@@ -10,7 +10,7 @@ const CitySearch = ({ allLocations }) => {
   <input
     type="text"
     className="city"
-            placeholder="Search for a city"
+    placeholder="Search for a city"
     value={query}
     onFocus={() => setShowSuggestions(true)}
   />
@@ -36,7 +36,7 @@ const CitySearch = ({ allLocations }) => {
       <input
         type="text"
         className="city"
-                placeholder="Search for a city"
+        placeholder="Search for a city"
         value={query}
         onFocus={() => setShowSuggestions(true)}
         onChange={handleInputChanged}

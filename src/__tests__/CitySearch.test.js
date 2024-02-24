@@ -58,15 +58,22 @@ describe('<CitySearch /> component', () => {
     const allEvents = await getEvents(); 
     const allLocations = extractLocations(allEvents);
     CitySearchComponent.rerender(<CitySearch allLocations={allLocations} />);
-
     const cityTextBox = CitySearchComponent.queryByRole('textbox');
     await user.type(cityTextBox, "Berlin");
 
     // the suggestion's textContent look like this: "Berlin, Germany"
     const BerlinGermanySuggestion = CitySearchComponent.queryAllByRole('listitem')[0];
-
     await user.click(BerlinGermanySuggestion);
-
     expect(cityTextBox).toHaveValue(BerlinGermanySuggestion.textContent);
   });
+
+  test('shows suggestions when textbox gains focus', async () => {
+    const user = userEvent.setup();
+    const cityTextBox = CitySearchComponent.getByRole('textbox');
+    
+    // Simulating focus by clicking on the textbox
+    await user.click(cityTextBox);
+    const suggestionList = CitySearchComponent.queryByRole('list');
+    expect(suggestionList).toBeInTheDocument();
+});
 });
