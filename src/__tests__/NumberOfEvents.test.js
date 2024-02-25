@@ -1,7 +1,7 @@
 // src/__tests__/NumberOfEvents.test.js
 
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'; // Make sure to import userEvent
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import NumberOfEvents from '../components/NumberOfEvents';
 
@@ -15,7 +15,6 @@ describe('<NumberOfEvents /> component', () => {
 
   test('contains an element with the role of the textbox', () => {
     render(<NumberOfEvents onNumberChange={() => {}} />);
-    // Using getByRole to find the input element with the role of "spinbutton" which is equivalent to a textbox that accepts numbers
     const textbox = screen.getByRole('spinbutton', { name: /number of events:/i });
     expect(textbox).toBeInTheDocument();
   });
@@ -26,22 +25,15 @@ describe('<NumberOfEvents /> component', () => {
     expect(input.value).toBe('32'); // Checks if the default value is set to 32
   });
 
-  test('user interaction updates input value and triggers onNumberChange callback', async () => {
-    const changeHandler = jest.fn();
+  test('user interaction updates input value and triggers onNumberChange callback with new value', async () => {
+    const onNumberChange = jest.fn(); // Mock the onNumberChange function
     const user = userEvent.setup();
-    render(<NumberOfEvents onNumberChange={changeHandler} defaultNumber={32} />);
+    render(<NumberOfEvents onNumberChange={onNumberChange} defaultNumber={32} />);
     
-    // Find the input element, which is a spinbutton due to its type being number
-    const input = screen.getByRole('spinbutton', { name: /number of events:/i });
-
-    // Simulate user interaction: clearing the input and typing a new value
-    await user.clear(input);
-    await user.type(input, '10');
-
-    // Check if the input value changes as expected
-    expect(input).toHaveValue(10);
-
-    // Check if the onNumberChange handler was called with the new value
-    expect(changeHandler).toHaveBeenCalledWith('10');
+    const input = screen.getByRole('spinbutton', { name: /number of events:/i }); 
+    await user.clear(input); // Simulate user clearing the input
+    await user.type(input, '10'); // Simulate user typing 10 in the input
+    expect(input).toHaveValue(10); // Checks if the input value is updated to 10
+    expect(onNumberChange).toHaveBeenCalledWith('10'); // Checks if the onNumberChange function is called with the new value
   });
 });
