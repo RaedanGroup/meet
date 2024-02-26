@@ -1,3 +1,5 @@
+// ./App.js
+
 import './App.css';
 import logo from './meetApp-logo.jpg';
 import EventList from './components/EventList';

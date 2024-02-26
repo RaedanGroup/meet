@@ -39,8 +39,6 @@ defineFeature(feature, (test) => {
   
     then('the details of that event should be expanded or shown.', async () => {
       await waitFor(() => {
-        // Use a more specific selector if possible, or check for visibility in another way
-        // Here's an example assuming you can identify details by their content
         const detailText = /have you wondered how you can ask Google/i;
         const eventDetails = screen.queryByText(detailText);
         expect(eventDetails).toBeInTheDocument();

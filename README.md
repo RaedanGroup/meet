@@ -178,8 +178,9 @@ Then the details of that event should be expanded or shown.
 - SCENARIO 2.3
 User can collapse an event to hide details.
 
-Given the user is viewing the list of upcoming events and an event's details are expanded;
-When the user clicks on the expanded event;
+Given the user is viewing the list of upcoming events and an event's details are collapsed;
+And the user has expanded an event to see its details;
+When the user clicks on the "Hide Details" button;
 Then the details of that event should be collapsed or hidden.
 
 ## Feature 3: Specify Number of Events
