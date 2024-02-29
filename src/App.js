@@ -1,7 +1,7 @@
 // ./App.js
 
 import './App.css';
-import logo from './meetApp-logo.jpg';
+import logo from './meetApp-logo512.png';
 import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
