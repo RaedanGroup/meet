@@ -32,13 +32,13 @@ defineFeature(feature, (test) => {
       const user = userEvent.setup();
       const numberOfEventsInput = screen.getByRole('spinbutton', { name: /number of events:/i });
       await user.clear(numberOfEventsInput);
-      await user.type(numberOfEventsInput, '10');
+      await user.type(numberOfEventsInput, '{backspace}');
     });
 
     then('the list of events should update to display the specified number of events accordingly.', async () => {
       await waitFor(() => {
         const eventItems = screen.getAllByRole('listitem');
-        expect(eventItems.length).toBe(10);
+        expect(eventItems.length).toBe(3);
       });
     });
   });

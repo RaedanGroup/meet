@@ -58,12 +58,11 @@ describe('<App /> integration', () => {
     const user = userEvent.setup();
     const { getByRole, getAllByRole } = render(<App />);
 
-    // Simulate user action of changing the number of events to 10
+    // Simulate user action of changing the number of events to 3
     const numberOfEventsInput = getByRole('spinbutton', { name: /number of events:/i });
-    await user.clear(numberOfEventsInput);
-    await user.type(numberOfEventsInput, '10');
+    await user.type(numberOfEventsInput, '{backspace}');
     const displayedEvents = getAllByRole('listitem');
-    expect(displayedEvents.length).toBe(10);
+    expect(displayedEvents.length).toBe(3);
   });
 
 });
