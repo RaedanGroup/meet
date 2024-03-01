@@ -19,6 +19,7 @@ function App() {
   const [errorAlert, setErrorAlert] = useState("");
   const [isInstallable, setIsInstallable] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [showInstallButton, setShowInstallButton] = useState(true);
 
   // Add event listener to listen for beforeinstallprompt event
   useEffect(() => {
@@ -34,6 +35,10 @@ function App() {
       window.removeEventListener('app-installable', handleAppInstallable);
     };
   }, []);
+
+  const hideInstallButton = () => {
+    setShowInstallButton(false);
+  };
 
   useEffect(() => {
     fetchData();
@@ -61,7 +66,7 @@ function App() {
         {errorAlert.length ? <ErrorAlert text={errorAlert}/> : null}
       </div>
       {/* Render the InstallButton component if the app is installable */}
-      {isInstallable && <InstallButton deferredPrompt={deferredPrompt} />}
+      {isInstallable && showInstallButton && <InstallButton deferredPrompt={deferredPrompt} onInstallClicked={hideInstallButton}/>}
       <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert={setInfoAlert} />
       <NumberOfEvents defaultNumber={currentNOE} onNumberChange={handleNumberChange} setErrorAlert={setErrorAlert} />
       <EventList events={events} />

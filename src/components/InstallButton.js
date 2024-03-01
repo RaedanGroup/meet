@@ -2,7 +2,7 @@
 import React from 'react';
 
 // Accept `deferredPrompt` as a prop
-const InstallButton = ({ deferredPrompt }) => {
+const InstallButton = ({ deferredPrompt, onInstallClicked }) => {
   const handleClick = () => {
     // Ensure `deferredPrompt` is not null
     if (!deferredPrompt) return;
@@ -14,6 +14,8 @@ const InstallButton = ({ deferredPrompt }) => {
     deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === 'accepted') {
         console.log('User accepted the install prompt');
+        // Hide the install button
+        onInstallClicked();
       } else {
         console.log('User dismissed the install prompt');
       }
@@ -23,7 +25,7 @@ const InstallButton = ({ deferredPrompt }) => {
   // Return a button to install the app
   return (
     <button id="installButton" onClick={handleClick} style={{ display: 'block' }}>
-      Install App
+      Install MEET App
     </button>
   );
 };
