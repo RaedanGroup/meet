@@ -8,7 +8,7 @@ import NumberOfEvents from './components/NumberOfEvents';
 import InstallButton from './components/InstallButton';
 import { useEffect, useState } from 'react';
 import { extractLocations, getEvents } from './api';
-import { InfoAlert, ErrorAlert } from './components/Alert';
+import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
 
 function App() {
   const [events, setEvents] = useState([]);
@@ -17,6 +17,7 @@ function App() {
   const [currentCity, setCurrentCity] = useState("See all cities");
   const [infoAlert, setInfoAlert] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
+  const [warningAlert, setWarningAlert] = useState("");
   const [isInstallable, setIsInstallable] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState(null);
   const [showInstallButton, setShowInstallButton] = useState(true);
@@ -39,6 +40,16 @@ function App() {
   const hideInstallButton = () => {
     setShowInstallButton(false);
   };
+
+  useEffect(() => {
+    // Check if the application is online or offline
+    if (!navigator.onLine) {
+      setWarningAlert("You are offline. The data shown may not be up to date.");
+    } else {
+      setWarningAlert(""); // Clear warning message when online
+    }
+    fetchData();
+  }, [currentCity, currentNOE]);
 
   useEffect(() => {
     fetchData();
@@ -64,6 +75,7 @@ function App() {
       <div className="alerts-container">
         {infoAlert.length ? <InfoAlert text={infoAlert}/> : null}
         {errorAlert.length ? <ErrorAlert text={errorAlert}/> : null}
+        {warningAlert ? <WarningAlert text={warningAlert} /> : null}
       </div>
       {/* Render the InstallButton component if the app is installable */}
       {isInstallable && showInstallButton && <InstallButton deferredPrompt={deferredPrompt} onInstallClicked={hideInstallButton}/>}
