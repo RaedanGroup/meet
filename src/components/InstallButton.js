@@ -1,27 +1,26 @@
 // InstallButton.js
 import React from 'react';
 
-const InstallButton = () => {
+// Accept `deferredPrompt` as a prop
+const InstallButton = ({ deferredPrompt }) => {
   const handleClick = () => {
-    // Show the install prompt
-    const promptEvent = window.deferredPrompt;
-    if (!promptEvent) return;
+    // Ensure `deferredPrompt` is not null
+    if (!deferredPrompt) return;
 
-    promptEvent.prompt();
+    // Show the install prompt
+    deferredPrompt.prompt();
 
     // Wait for the user to respond to the prompt
-    promptEvent.userChoice.then((choiceResult) => {
+    deferredPrompt.userChoice.then((choiceResult) => {
       if (choiceResult.outcome === 'accepted') {
         console.log('User accepted the install prompt');
       } else {
         console.log('User dismissed the install prompt');
       }
-
-      // We no longer need the prompt. Clear it up.
-      window.deferredPrompt = null;
     });
   };
 
+  // Return a button to install the app
   return (
     <button id="installButton" onClick={handleClick} style={{ display: 'block' }}>
       Install App

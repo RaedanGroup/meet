@@ -17,23 +17,21 @@ function App() {
   const [currentCity, setCurrentCity] = useState("See all cities");
   const [infoAlert, setInfoAlert] = useState("");
   const [errorAlert, setErrorAlert] = useState("");
-  const [showInstallPrompt, setShowInstallPrompt] = useState(false);
+  const [isInstallable, setIsInstallable] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState(null);
 
   // Add event listener to listen for beforeinstallprompt event
   useEffect(() => {
-    const handleBeforeInstallPrompt = (e) => {
-      // Prevent Chrome 67 and earlier from automatically showing the prompt
-      e.preventDefault();
-      // Stash the event so it can be triggered later.
-      window.deferredPrompt = e;
-      // Update state to indicate that the install prompt can be shown
-      setShowInstallPrompt(true);
+    const handleAppInstallable = (event) => {
+      // Set the value of `isInstallable` and `deferredPrompt` based on the event detail
+      setIsInstallable(event.detail.isInstallable);
+      setDeferredPrompt(event.detail.deferredPrompt);
     };
 
-    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    window.addEventListener('app-installable', handleAppInstallable);
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      window.removeEventListener('app-installable', handleAppInstallable);
     };
   }, []);
 
@@ -62,7 +60,8 @@ function App() {
         {infoAlert.length ? <InfoAlert text={infoAlert}/> : null}
         {errorAlert.length ? <ErrorAlert text={errorAlert}/> : null}
       </div>
-      {showInstallPrompt && <InstallButton />}
+      {/* Render the InstallButton component if the app is installable */}
+      {isInstallable && <InstallButton deferredPrompt={deferredPrompt} />}
       <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert={setInfoAlert} />
       <NumberOfEvents defaultNumber={currentNOE} onNumberChange={handleNumberChange} setErrorAlert={setErrorAlert} />
       <EventList events={events} />
