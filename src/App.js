@@ -5,6 +5,8 @@ import logo from './meetApp-logo512.png';
 import EventList from './components/EventList';
 import CitySearch from './components/CitySearch';
 import NumberOfEvents from './components/NumberOfEvents';
+import CityEventsChart from './components/CityEventsChart';
+import EventGenresChart from './components/EventGenresChart';
 import InstallButton from './components/InstallButton';
 import { useEffect, useState } from 'react';
 import { extractLocations, getEvents } from './api';
@@ -37,6 +39,7 @@ function App() {
     };
   }, []);
 
+  // Hide the install button after use
   const hideInstallButton = () => {
     setShowInstallButton(false);
   };
@@ -72,6 +75,7 @@ function App() {
   return (
     <div className="App">
       <img src={logo} alt="MeetApp Logo" style={{ height: '250px' }} />
+      {/* Render Alerts */}
       <div className="alerts-container">
         {infoAlert.length ? <InfoAlert text={infoAlert}/> : null}
         {errorAlert.length ? <ErrorAlert text={errorAlert}/> : null}
@@ -81,6 +85,11 @@ function App() {
       {isInstallable && showInstallButton && <InstallButton deferredPrompt={deferredPrompt} onInstallClicked={hideInstallButton}/>}
       <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert={setInfoAlert} />
       <NumberOfEvents defaultNumber={currentNOE} onNumberChange={handleNumberChange} setErrorAlert={setErrorAlert} />
+      {/* Render Event Charts */}
+      <div className="charts-container">
+        <EventGenresChart events={events} />
+        <CityEventsChart allLocations={allLocations} events={events} />
+      </div>
       <EventList events={events} />
     </div>
   );
