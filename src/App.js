@@ -82,7 +82,11 @@ function App() {
         {warningAlert ? <WarningAlert text={warningAlert} /> : null}
       </div>
       {/* Render the InstallButton component if the app is installable */}
-      {isInstallable && showInstallButton && <InstallButton deferredPrompt={deferredPrompt} onInstallClicked={hideInstallButton}/>}
+      {isInstallable && showInstallButton && 
+        <div className="install-button-container">
+          <InstallButton deferredPrompt={deferredPrompt} onInstallClicked={hideInstallButton}/>
+        </div>
+      }
       <CitySearch allLocations={allLocations} setCurrentCity={setCurrentCity} setInfoAlert={setInfoAlert} />
       <NumberOfEvents defaultNumber={currentNOE} onNumberChange={handleNumberChange} setErrorAlert={setErrorAlert} />
       {/* Render Event Charts */}

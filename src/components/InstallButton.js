@@ -24,7 +24,7 @@ const InstallButton = ({ deferredPrompt, onInstallClicked }) => {
 
   // Return a button to install the app
   return (
-    <button id="installButton" onClick={handleClick} style={{ display: 'block' }}>
+    <button id="installButton" onClick={handleClick} style={{ display: 'block', fontSize: '20px', fontWeight: 'bold' }}>
       Install MEET App
     </button>
   );
